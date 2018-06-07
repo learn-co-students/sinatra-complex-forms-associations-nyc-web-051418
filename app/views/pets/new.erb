@@ -1,2 +1,30 @@
 <h1>Create a new Pet</h1>
 
+<form action="/pets" method="POST">
+  <label>Name:</label>
+
+  <br></br>
+
+  <input id="pet_name" type="text" name="pet[name]">
+
+  <br></br>
+
+  <label>Choose an existing owner:</label>
+
+   <br></br>
+
+   <% @owners.each do |owner| %>
+   <!-- used type="radio" for testing in browser, but rspec wants checkbox, oh well -->
+     <input type="checkbox" name="pet[owner_ids][]" id="<%=owner.id%>" value="<%= owner.id %>"><%= owner.name %></input>
+   <%end%>
+
+   <br></br>
+
+     <label>and/or, create a new owner:</label>
+     <br></br>
+     <label>name:</label>
+       <input id="owner_name" type="text" name="owner[name]"></input>
+     <br></br>
+
+  <input id="Create Pet" type="submit" value="Create Pet">
+</form>
